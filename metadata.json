@@ -1,0 +1,7 @@
+{
+  "name": "ZenMarket - Global Wellness Retreat Marketplace",
+  "description": "A premium, production-ready marketplace for wellness retreats, yoga, and meditation experiences, featuring search, booking, and AI-powered recommendations.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
