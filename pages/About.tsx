@@ -1,23 +1,25 @@
 
 import React from 'react';
-import { Heart, Globe, ShieldCheck, Sparkles, Anchor, Leaf } from 'lucide-react';
+/* Fixed: Added Link to the imports from react-router-dom */
+import { Link } from 'react-router-dom';
+import { Heart, Globe, ShieldCheck, Sparkles, Anchor } from 'lucide-react';
+import { AIVisionWrapper } from '../components/AIVisionWrapper';
 
 export const About: React.FC = () => {
   return (
     <div className="pb-24">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1499728603263-13726abce5fd?auto=format&fit=crop&q=80&w=2000" 
-            alt="Serene landscape"
-            className="w-full h-full object-cover brightness-90"
-          />
-          <div className="absolute inset-0 bg-black/20"></div>
-        </div>
+        <AIVisionWrapper 
+          prompt="A story-driven visual of ZenMarket's origins: a traditional Japanese tea house in Kyoto overlooking a serene mountain landscape, with ethereal light rays symbolizing spiritual connection and transformation"
+          fallbackUrl="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=85&w=2000"
+          aspectRatio="16:9"
+          className="absolute inset-0 z-0"
+          overlayClassName="bg-black/20"
+        />
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-bold serif mb-6 tracking-tight">Our Journey to Zen</h1>
-          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto italic">
+          <h1 className="text-5xl md:text-7xl font-bold serif mb-6 tracking-tight drop-shadow-2xl">Our Journey to Zen</h1>
+          <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto italic drop-shadow-md">
             Connecting seekers with world-class wellness experiences since 2023.
           </p>
         </div>
@@ -55,14 +57,13 @@ export const About: React.FC = () => {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1545201071-75f0286991a8?auto=format&fit=crop&q=80&w=1000" 
-                alt="Meditation by the water"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-8 -left-8 bg-[#7C9070] text-white p-8 rounded-3xl hidden md:block max-w-xs shadow-xl">
+            <AIVisionWrapper 
+              prompt="A peaceful meditation sanctuary by a still lake with floating blossoms"
+              fallbackUrl="https://images.unsplash.com/photo-1545201071-75f0286991a8?auto=format&fit=crop&q=80&w=1200"
+              aspectRatio="3:4"
+              className="rounded-3xl shadow-2xl"
+            />
+            <div className="absolute -bottom-8 -left-8 bg-[#7C9070] text-white p-8 rounded-3xl hidden md:block max-w-xs shadow-xl z-30">
               <Sparkles className="w-10 h-10 mb-4" />
               <h4 className="font-bold text-xl mb-2">100k+ Souls</h4>
               <p className="text-sm text-white/80">Guided toward their path of transformation across 80+ countries.</p>
@@ -113,9 +114,9 @@ export const About: React.FC = () => {
             Your next chapter of healing and discovery is waiting to be written. Let us help you find the right page.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <button className="bg-[#7C9070] text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all">
+            <Link to="/explore" className="bg-[#7C9070] text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all">
               Browse Retreats
-            </button>
+            </Link>
             <button className="bg-white border border-gray-200 text-gray-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-all">
               Contact Our Guides
             </button>

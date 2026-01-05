@@ -1,13 +1,15 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Menu, X, User, Globe, Heart, Bell, Calendar } from 'lucide-react';
+import { Search, Menu, X, User, Globe, Heart, Bell, Calendar, ShoppingCart } from 'lucide-react';
 import { MOCK_USER } from '../constants';
 import { DeepBrainAI } from './DeepBrainAI';
+import { useCart } from '../context/CartContext';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { totalItems } = useCart();
 
   const navLinks = [
     { name: 'Explore', path: '/explore' },
@@ -44,8 +46,17 @@ const Header: React.FC = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-5">
-            <button className="text-gray-500 hover:text-gray-700"><Heart className="w-5 h-5" /></button>
-            <button className="text-gray-500 hover:text-gray-700"><Bell className="w-5 h-5" /></button>
+            <button className="text-gray-500 hover:text-gray-700 transition-transform active:scale-95">
+              <Heart className="w-5 h-5" />
+            </button>
+            <Link to="/checkout" className="relative text-gray-500 hover:text-[#7C9070] transition-all p-2">
+              <ShoppingCart className="w-5 h-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#7C9070] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-in zoom-in">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
             <Link to="/dashboard" className="flex items-center gap-2 bg-[#F9F6F1] px-4 py-2 rounded-full border border-[#E5E7EB] hover:bg-white transition-all">
               <User className="w-5 h-5 text-[#7C9070]" />
               <span className="text-sm font-medium">{MOCK_USER.name.split(' ')[0]}</span>
@@ -53,7 +64,15 @@ const Header: React.FC = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-4">
+             <Link to="/checkout" className="relative p-2 text-gray-500">
+               <ShoppingCart className="w-6 h-6" />
+               {totalItems > 0 && (
+                  <span className="absolute top-1 right-1 bg-[#7C9070] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                    {totalItems}
+                  </span>
+                )}
+             </Link>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -80,6 +99,7 @@ const Header: React.FC = () => {
           <Link to="/organizer" className="block px-3 py-2 text-base font-semibold text-[#7C9070]">Host a Retreat</Link>
           <hr />
           <Link to="/dashboard" className="block px-3 py-2 text-base font-medium text-gray-700">My Dashboard</Link>
+          <Link to="/checkout" className="block px-3 py-2 text-base font-medium text-gray-700">Checkout ({totalItems} items)</Link>
         </div>
       )}
     </header>

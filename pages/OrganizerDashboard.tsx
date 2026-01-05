@@ -3,6 +3,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { Plus, Users, DollarSign, Calendar, Eye, Star, ChevronRight, LayoutDashboard, Settings } from 'lucide-react';
 import { MOCK_RETREATS } from '../constants';
+import { AIVisionWrapper } from '../components/AIVisionWrapper';
 
 const data = [
   { name: 'May', bookings: 4, revenue: 3200 },
@@ -118,9 +119,12 @@ export const OrganizerDashboard: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {MOCK_RETREATS.slice(0, 2).map(retreat => (
             <div key={retreat.id} className="bg-white border border-[#F0ECE4] rounded-3xl p-6 flex items-center gap-6 group hover:shadow-xl transition-all">
-              <div className="w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0">
-                <img src={retreat.images[0]} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-              </div>
+              <AIVisionWrapper 
+                prompt={retreat.title}
+                fallbackUrl={`${retreat.images[0]}&q=75&w=400&auto=format&fit=crop`}
+                aspectRatio="1:1"
+                className="w-32 h-32 rounded-2xl shrink-0 border border-gray-100"
+              />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[10px] font-bold px-2 py-0.5 bg-[#7C9070] text-white rounded-full uppercase tracking-widest">Active</span>

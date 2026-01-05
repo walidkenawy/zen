@@ -41,6 +41,13 @@ export interface Retreat {
   isFeatured?: boolean;
 }
 
+export interface CartItem {
+  id: string;
+  retreat: Retreat;
+  selectedDate: string;
+  guests: number;
+}
+
 export interface Booking {
   id: string;
   retreatId: string;
@@ -60,3 +67,6 @@ export interface Review {
   comment: string;
   date: string;
 }
+
+// Aspect ratio type for image generation
+export type AspectRatio = "1:1" | "3:4" | "4:3" | "9:16" | "16:9";

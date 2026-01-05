@@ -9,24 +9,35 @@ import { Dashboard } from './pages/Dashboard';
 import { OrganizerDashboard } from './pages/OrganizerDashboard';
 import { About } from './pages/About';
 import { CalendarPage } from './pages/CalendarPage';
+import { AITripPlanner } from './pages/AITripPlanner';
+import { Checkout } from './pages/Checkout';
+import { BookingSuccess } from './pages/BookingSuccess';
+import { CartProvider } from './context/CartContext';
+import { WishlistProvider } from './context/WishlistContext';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/retreat/:slug" element={<RetreatDetail />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/organizer" element={<OrganizerDashboard />} />
-          <Route path="/about" element={<About />} />
-          {/* Fallback to Home for demo purposes */}
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <WishlistProvider>
+      <CartProvider>
+        <Router>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/calendar" element={<CalendarPage />} />
+              <Route path="/retreat/:slug" element={<RetreatDetail />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/organizer" element={<OrganizerDashboard />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/trip-planner" element={<AITripPlanner />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/booking-success" element={<BookingSuccess />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </CartProvider>
+    </WishlistProvider>
   );
 };
 
