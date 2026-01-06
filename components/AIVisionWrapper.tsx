@@ -10,6 +10,7 @@ interface AIVisionWrapperProps {
   aspectRatio?: AspectRatio;
   className?: string;
   overlayClassName?: string;
+  priority?: boolean;
 }
 
 export const AIVisionWrapper: React.FC<AIVisionWrapperProps> = ({ 
@@ -17,7 +18,8 @@ export const AIVisionWrapper: React.FC<AIVisionWrapperProps> = ({
   fallbackUrl, 
   aspectRatio = "16:9",
   className = "",
-  overlayClassName = ""
+  overlayClassName = "",
+  priority = false
 }) => {
   const [currentUrl, setCurrentUrl] = useState<string>(fallbackUrl);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -42,6 +44,7 @@ export const AIVisionWrapper: React.FC<AIVisionWrapperProps> = ({
       <img 
         src={currentUrl} 
         alt={prompt}
+        loading={priority ? "eager" : "lazy"}
         className={`w-full h-full object-cover transition-all duration-1000 ${isGenerating ? 'blur-xl scale-110 opacity-50' : 'blur-0 scale-100 opacity-100'} ${hasGenerated ? 'animate-in fade-in zoom-in duration-1000' : ''}`}
       />
       

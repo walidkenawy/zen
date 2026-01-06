@@ -14,9 +14,10 @@ export const RetreatCard: React.FC<RetreatCardProps> = ({ retreat }) => {
     <div className="group flex flex-col bg-white rounded-[2rem] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.12)] transition-all duration-500 border border-[#F0ECE4] transform hover:-translate-y-2">
       <AIVisionWrapper 
         prompt={retreat.title}
-        fallbackUrl={`${retreat.images[0]}&auto=format&fit=crop&q=80&w=800`}
+        fallbackUrl={`${retreat.images[0]}&auto=format&fit=crop&q=85&w=1000`}
         aspectRatio="4:3"
         className="aspect-[4/3]"
+        priority={false}
       />
       
       <Link to={`/retreat/${retreat.slug}`} className="p-8 flex-grow flex flex-col">

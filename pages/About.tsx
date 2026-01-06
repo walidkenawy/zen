@@ -11,8 +11,8 @@ export const About: React.FC = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <AIVisionWrapper 
-          prompt="A story-driven visual of ZenMarket's origins: a traditional Japanese tea house in Kyoto overlooking a serene mountain landscape, with ethereal light rays symbolizing spiritual connection and transformation"
-          fallbackUrl="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=85&w=2000"
+          prompt="A wide-angle cinematic shot of a traditional Japanese tea house at the edge of a serene mountain lake, surrounded by blooming cherry blossoms and mist-covered peaks, with warm golden light connecting distant lanterns and silhouettes, symbolizing global wellness and a sense of deep spiritual connection"
+          fallbackUrl="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=90&w=2400"
           aspectRatio="16:9"
           className="absolute inset-0 z-0"
           overlayClassName="bg-black/20"
